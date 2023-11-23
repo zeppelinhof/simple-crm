@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from 'src/models/user.class';
-import { Firestore, collection, doc, onSnapshot, query, where } from '@angular/fire/firestore';
+import { Firestore, collection, doc, onSnapshot, query } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-user',
@@ -11,7 +11,7 @@ import { Firestore, collection, doc, onSnapshot, query, where } from '@angular/f
 })
 export class UserComponent implements OnInit {
   user = new User();
-  users:any = [];
+  allUsers:any = [];
 
   constructor(public dialog: MatDialog, private firestore: Firestore) { }
 
@@ -19,12 +19,11 @@ export class UserComponent implements OnInit {
 
     const q = query(collection(this.firestore, 'users'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      this.users = [];
+      this.allUsers = [];
       querySnapshot.forEach((element) => {
-        debugger
-        this.users.push(element.data());
+        this.allUsers.push(this.setUserObject(element.data(), element.id));
       });
-      console.log("Current cities in CA: ", this.users);
+      console.log("Current cities in CA: ", this.allUsers);
     });
 
   }
@@ -33,9 +32,16 @@ export class UserComponent implements OnInit {
     this.dialog.open(DialogAddUserComponent);
   }
 
-  // setObject(obj: any, id: string): User {
-  //   debugger
-  //   return obj.toJSON();
-  // }
+  setUserObject(obj: any, id: string) {
+    return {
+      customIdName: id,
+      firstName: obj.firstName,
+      lastName: obj.lastName,
+      birthdate: obj.birthDate,
+      city: obj.city,
+      street: obj.street,
+      zipCode: obj.zipCode
+    }
+  }
 
 }
