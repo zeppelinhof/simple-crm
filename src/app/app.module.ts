@@ -23,6 +23,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import {MatCardModule} from '@angular/material/card';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
+import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
 
 
 @NgModule({
@@ -31,7 +34,9 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     DashboardComponent,
     UserComponent,
     DialogAddUserComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    DialogEditAddressComponent,
+    DialogEditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     provideFirebaseApp(() => initializeApp({"projectId":"simple-crm-539c9","appId":"1:687446422877:web:2f6cb9c952fa22ad9de4b4","storageBucket":"simple-crm-539c9.appspot.com","apiKey":"AIzaSyAl9f0S2gGsTnuuYXfrv6IFm4fRMPqCEC0","authDomain":"simple-crm-539c9.firebaseapp.com","messagingSenderId":"687446422877"})),
     provideFirestore(() => getFirestore()),
     MatProgressBarModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule
     
   ],
   providers: [],

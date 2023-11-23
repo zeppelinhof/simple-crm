@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Firestore, collection, onSnapshot, query, doc, getDoc, where, QuerySnapshot } from '@angular/fire/firestore';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/models/user.class';
+import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -13,7 +16,9 @@ export class UserDetailComponent {
   userId = '';
   user: User = new User();
 
-  constructor(private route: ActivatedRoute, private firestore: Firestore) { }
+  constructor(private route: ActivatedRoute,
+    private firestore: Firestore,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
@@ -44,12 +49,16 @@ export class UserDetailComponent {
     console.log("Retrieved user:", this.user);
   }
 
+  editMenu() {
+    const dialog = this.dialog.open(DialogEditAddressComponent);
+    dialog.componentInstance.user = new User(this.user.toJSON()); // this.user.toJSON() = diesen Benutzer (Typ: User) in JSON umwandeln
+    dialog.componentInstance.userId = this.userId;
+  }
 
-  // getUsersRef() {
-  //   return collection(this.firestore, 'users');
-  // }
+  editUserDetail(){
+    const dialog = this.dialog.open(DialogEditUserComponent);
+    dialog.componentInstance.user = new User(this.user.toJSON());
+    dialog.componentInstance.userId = this.userId;
+  }
 
-  // getSingleDocRef(colId: string, docId: string) {
-  //   return doc(collection(this.firestore, colId), docId)
-  // }
 }
