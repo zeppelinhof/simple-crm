@@ -34,4 +34,8 @@ export class DialogEditUserComponent {
     return doc(collection(this.firestore, colId), docId)
   }
 
+  add(a: number, b: number): number{
+    return a+b;
+  }
+
 }

@@ -13,6 +13,17 @@ import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.co
 })
 export class UserDetailComponent {
 
+  profiles: string[] = [
+    'assets/img/profiles/man/man1.jpg',
+    'assets/img/profiles/man/man2.png',
+    'assets/img/profiles/man/man3.jpg',
+    'assets/img/profiles/man/man4.jpg',
+    'assets/img/profiles/man/man5.jpg',
+    'assets/img/profiles/woman/w1.jpg',
+    'assets/img/profiles/woman/w2.jpg',
+    'assets/img/profiles/woman/w3.jpg'
+  ]
+
   userId = '';
   user: User = new User();
 
