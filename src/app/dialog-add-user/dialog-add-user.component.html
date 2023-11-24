@@ -6,6 +6,18 @@
     <h1 mat-dialog-title>Add user</h1>
     <div mat-dialog-content>
         <div>
+            <div class="profile-wrap">
+                <div class="profileImage"><img *ngIf="dropFileService.imageChosen" [src]="dropFileService.imageSource"></div>
+            </div>
+            <div class="center">
+                <ngx-file-drop [multiple]="true" dropZoneLabel="Drag and drop your profile" (onFileDrop)="dropFileService.dropped($event)">
+                    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                        <button mat-raised-button (click)="openFileSelector()">Choose or drag and drop your profile</button>
+                    </ng-template>
+                </ngx-file-drop>
+            </div>
+        </div>
+        <div>
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>First name</mat-label>
                 <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="First name">
@@ -14,7 +26,8 @@
 
             <mat-form-field appearance="outline">
                 <mat-label>Last name</mat-label>
-                <input [disabled]="loading" [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Last name">
+                <input [disabled]="loading" [disabled]="loading" [(ngModel)]="user.lastName" matInput
+                    placeholder="Last name">
             </mat-form-field>
         </div>
 
@@ -28,7 +41,8 @@
         <div>
             <mat-form-field appearance="outline" class="fill-width">
                 <mat-label>Birthdate</mat-label>
-                <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="Placeholder" [matDatepicker]="picker1">
+                <input [disabled]="loading" [(ngModel)]="birthDate" matInput placeholder="Birthdate"
+                    [matDatepicker]="picker1">
                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>

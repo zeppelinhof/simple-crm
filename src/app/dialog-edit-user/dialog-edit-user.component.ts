@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Firestore, doc, updateDoc, collection } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from 'src/models/user.class';
+import { DropFileService } from '../drop-file.service';
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -15,12 +16,15 @@ export class DialogEditUserComponent {
   loading = false;
   birthDate!: Date;
 
-  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>, private firestore: Firestore){}
+  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>, 
+    private firestore: Firestore, 
+    public dropFileService: DropFileService){}
 
 
   async saveUser(){
     this.loading = true
-    debugger
+    this.user.profile = this.dropFileService.imageSource;
+    this.dropFileService.imageChosen = false;
     let docRef = this.getSingleDocRef('users', this.userId);
     await updateDoc(docRef, this.user.toJSON()).catch(
       (err) => { console.log(err); }
@@ -32,10 +36,6 @@ export class DialogEditUserComponent {
 
   getSingleDocRef(colId: string, docId: string) {
     return doc(collection(this.firestore, colId), docId)
-  }
-
-  add(a: number, b: number): number{
-    return a+b;
   }
 
 }

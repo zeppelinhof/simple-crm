@@ -26,6 +26,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 
 @NgModule({
@@ -57,8 +59,9 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
     provideFirestore(() => getFirestore()),
     MatProgressBarModule,
     MatCardModule,
-    MatMenuModule
-    
+    MatMenuModule,
+    HttpClientModule,
+    NgxFileDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 <mat-card class="user-detail-header">
+    <mat-progress-bar *ngIf="deleting" class="delete-progress" mode="query"></mat-progress-bar>
 
     <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="userMenu">
         <mat-icon>more_vert</mat-icon>
@@ -6,10 +7,11 @@
 
     <mat-menu #userMenu="matMenu">
         <button mat-menu-item (click)="editUserDetail()">Edit</button>
+        <button mat-menu-item (click)="deleteUser('users', userId)">Delete user</button>
     </mat-menu>
 
     <div class="img-user-details">
-        <img src="{{profiles[3]}}">
+        <img src="{{user.profile}}">
         <div class="user-details">
             <h2>{{user.firstName}} {{user.lastName}}</h2>
             {{user.email}}

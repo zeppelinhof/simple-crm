@@ -26,3 +26,45 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     //     width: calc(100% + 48px);
     // }
 }
+
+.ngx-file-drop__drop-zone{
+    height: 50px !important;
+    margin: auto;
+    border: 1px solid #9E9E9E !important;
+    border-radius: 5px;
+}
+
+.ngx-file-drop__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px !important;
+}
+
+.profile-wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 30px;
+}
+
+.center{
+    margin-bottom: 16px;
+}
+
+.profileImage {
+    height: 100px;
+    width: 100px;
+   
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+
+}

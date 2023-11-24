@@ -40,7 +40,8 @@ export class UserComponent implements OnInit {
       birthdate: obj.birthDate,
       city: obj.city,
       street: obj.street,
-      zipCode: obj.zipCode
+      zipCode: obj.zipCode,
+      profile: obj.profile
     }
   }
 
