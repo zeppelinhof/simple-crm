@@ -12,7 +12,7 @@
             <div class="center">
                 <ngx-file-drop [multiple]="true" dropZoneLabel="Drag and drop your profile" (onFileDrop)="dropFileService.dropped($event)">
                     <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                        <button mat-raised-button (click)="openFileSelector()">Choose or drag and drop your profile</button>
+                        <button mat-raised-button (click)="openFileSelector()" data-test="profile-choose-button">Choose or drag and drop your profile</button>
                     </ng-template>
                 </ngx-file-drop>
             </div>

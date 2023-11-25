@@ -36,6 +36,7 @@ export class UserComponent implements OnInit {
     return {
       customIdName: id,
       firstName: obj.firstName,
+      email: obj.email,
       lastName: obj.lastName,
       birthdate: obj.birthDate,
       city: obj.city,
