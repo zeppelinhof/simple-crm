@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/models/user.class';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+import { UserFirebaseService } from '../user-firebase.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -20,7 +21,8 @@ export class UserDetailComponent {
   constructor(private route: ActivatedRoute,
     private firestore: Firestore,
     public dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    private userFirebase: UserFirebaseService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
@@ -64,17 +66,12 @@ export class UserDetailComponent {
 
   async deleteUser(colId: "users", docId: string) {
     this.deleting = true;
-    await deleteDoc(this.getSingleDocRef(colId, docId)).catch(
+    await deleteDoc(this.userFirebase.getSingleDocRef(colId, docId)).catch(
       (err) => { console.log(err); }
     ).then(()=>{
       this.deleting = false;
       this.router.navigate(['/user']);
     });
-  }
-
-
-  getSingleDocRef(colId: string, docId: string) {
-    return doc(collection(this.firestore, colId), docId)
   }
 
 }

@@ -1,0 +1,37 @@
+.carousel-wrap {
+    height: calc(100vh - 75px);
+}
+
+
+.carousel {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100%;
+
+    img {
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightcyan;
+    // width: unset;
+
+}
+
+.col {
+    padding-left: 0;
+    padding-right: 0;
+    flex: 0 0 0%;
+
+}
+
+.width-unset{
+    width: unset;
+}
