@@ -1,35 +1,25 @@
 <div class="carousel-wrap">
-    <div id="carouselExampleIndicators" class="carousel slide">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
+    <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="assets/img/profiles/man1.jpg" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-                <img src="assets/img/profiles/man3.jpg" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-                <img src="assets/img/profiles/man4.jpg" class="d-block w-100">
-            </div>
+          <div class="carousel-item active">
+            <img src="assets/img/profiles/w1.jpg" class="d-block w-100" >
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/profiles/w2.jpg" class="d-block w-100" >
+          </div>
+          <div class="carousel-item">
+            <img src="assets/img/profiles/w3.jpg" class="d-block w-100" >
+          </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
         </button>
-    </div>
+      </div>
 </div>
 
 <div id="bootstrap-overwrite" class="container text-center">
@@ -52,9 +42,8 @@
                         schedule
                     </span></mat-icon>
                 <div class="card-body">
-                    <h5 class="card-title">Passed seconds</h5>
-                    <p class="card-text">{{showName}}</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    <img src="{{showProfile}}" class="show-image-in-card">
+                    <p class="card-text">{{showProfile}}</p>
                 </div>
             </div>
         </div>

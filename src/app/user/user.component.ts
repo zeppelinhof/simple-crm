@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
       querySnapshot.forEach((element) => {
         this.allUsers.push(this.setUserObject(element.data(), element.id));
       });
-      console.log("Current cities in CA: ", this.allUsers);
+      console.log("All current users: ", this.allUsers);
     });
 
   }
