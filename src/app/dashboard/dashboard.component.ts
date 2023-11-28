@@ -13,7 +13,7 @@ import { Observable, Observer, of } from 'rxjs';
 export class DashboardComponent implements OnInit {
   showTime: number = 0;
   showProfile: string = 'assets/img/profiles/man1.jpg';
-  showName: string = '';
+  showName: string = 'Karl';
   zahlen: number = 0;
   numbers: number = 0;
   imagesPathList: string[] = [
@@ -38,9 +38,9 @@ export class DashboardComponent implements OnInit {
         this.showProfile = pic;
       });
 
-    this.userFirebase.currentName
-      .subscribe((name) => {
-        this.showName = name;
+    this.userFirebase.currentUser
+      .subscribe((obj) => {
+        this.showName = obj.firstName;
       });
 
     const numbers$ = of(1, 2, 3);

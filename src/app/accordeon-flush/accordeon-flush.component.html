@@ -1,1 +1,14 @@
-<p>accordeon-flush works!</p>
+<div *ngIf="accVisible" class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                {{userAcc.firstName}}
+            </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Hi, {{userAcc.firstName}} here. <br> My hometown is {{userAcc.city}}. Write me
+                here: {{userAcc.email}}</div>
+        </div>
+    </div>
+</div>
