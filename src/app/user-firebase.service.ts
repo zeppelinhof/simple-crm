@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Firestore, updateDoc, doc, collection, query, onSnapshot, QuerySnapshot } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of, Observer } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserFirebaseService {
   imagesPathList: string[] = [];
+  namesList: string[] = [];
   currentPicture = new BehaviorSubject<string>("");
+  currentName = new BehaviorSubject<string>("");
 
   constructor(private firestore: Firestore) { this.start(); }
 
@@ -15,7 +18,11 @@ export class UserFirebaseService {
     const q = query(collection(this.firestore, 'users'));
     onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((element) => {
-        this.imagesPathList.push(element.data()['profile']);
+        let profilePath = element.data()['profile'];
+        if (profilePath !== '') {
+          this.imagesPathList.push(profilePath);
+          this.namesList.push(element.data()['firstName']);
+        }        
       })
     });
     this.switchPathUser();
@@ -26,6 +33,7 @@ export class UserFirebaseService {
     setInterval(() => {
       index = index % this.imagesPathList.length;
       this.currentPicture.next(this.imagesPathList[index]);
+      this.currentName.next(this.namesList[index]);
       index++;
     }, 1000);
   }

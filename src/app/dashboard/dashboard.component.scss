@@ -1,5 +1,11 @@
 .carousel-wrap {
-    height: calc(100vh - 75px);
+    height: 50vh;
+
+    img{
+        position: absolute;
+        top: -320px;
+        left: 0;
+    }
 }
 
 

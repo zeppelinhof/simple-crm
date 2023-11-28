@@ -28,6 +28,7 @@ import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-ad
 import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxFileDropModule } from 'ngx-file-drop';
+import { AccordeonFlushComponent } from './accordeon-flush/accordeon-flush.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     DialogAddUserComponent,
     UserDetailComponent,
     DialogEditAddressComponent,
-    DialogEditUserComponent
+    DialogEditUserComponent,
+    AccordeonFlushComponent
   ],
   imports: [
     BrowserModule,
