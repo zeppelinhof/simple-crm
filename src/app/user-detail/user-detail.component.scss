@@ -1,11 +1,11 @@
-.user-detail-header{
+.user-detail-header {
     min-height: 250px;
     background-color: #ff5b27;
     color: white;
     display: flex;
     justify-content: flex-end;
 
-    img{
+    img {
         height: 100px;
         width: 100px;
         object-fit: cover;
@@ -13,13 +13,30 @@
     }
 }
 
-.img-user-details{
+.btn-switch {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    padding: 12px;
+    gap:12px;
+}
+
+.btn-direction{
+    cursor: pointer;
+
+    &:hover{
+        scale: 1.1;
+    }
+}
+
+.img-user-details {
     display: flex;
     margin-bottom: 32px;
     margin-left: 16px;
 }
 
-.user-details{
+.user-details {
     margin-left: 32px;
     display: flex;
     flex-direction: column;
@@ -27,18 +44,18 @@
     justify-content: center;
     height: 100px;
 
-    h2{
+    h2 {
         margin-bottom: 0;
     }
 }
 
-.pin-right-upper-corner{
+.pin-right-upper-corner {
     position: absolute;
     right: 0;
     top: 0;
 }
 
-.delete-progress{
+.delete-progress {
     position: absolute;
     top: 0;
 }

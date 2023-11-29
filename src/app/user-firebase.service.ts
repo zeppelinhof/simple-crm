@@ -48,7 +48,7 @@ export class UserFirebaseService {
         { firstName: this.namesList[index], city: this.citiesList[index], email: this.emailsList[index] }
       ));
       index++;
-    }, 7000);
+    }, 3000);
 
     setInterval(()=>{
       this.accVisible.next(true);
@@ -58,6 +58,20 @@ export class UserFirebaseService {
 
   getSingleDocRef(colId: string, docId: string) {
     return doc(collection(this.firestore, colId), docId)
+  }
+
+  setUserObject(obj: any, id: string) {
+    return {
+      customIdName: id,
+      firstName: obj.firstName,
+      email: obj.email,
+      lastName: obj.lastName,
+      birthdate: obj.birthDate,
+      city: obj.city,
+      street: obj.street,
+      zipCode: obj.zipCode,
+      profile: obj.profile
+    }
   }
 
 }

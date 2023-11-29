@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from 'src/models/user.class';
 import { Firestore, collection, doc, onSnapshot, query } from '@angular/fire/firestore';
+import { UserFirebaseService } from '../user-firebase.service';
 
 @Component({
   selector: 'app-user',
@@ -13,7 +14,7 @@ export class UserComponent implements OnInit {
   user = new User();
   allUsers:any = [];
 
-  constructor(public dialog: MatDialog, private firestore: Firestore) { }
+  constructor(public dialog: MatDialog, private firestore: Firestore, private userFirebase: UserFirebaseService) { }
 
   ngOnInit() {
 
@@ -21,7 +22,7 @@ export class UserComponent implements OnInit {
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       this.allUsers = [];
       querySnapshot.forEach((element) => {
-        this.allUsers.push(this.setUserObject(element.data(), element.id));
+        this.allUsers.push(this.userFirebase.setUserObject(element.data(), element.id));
       });
       console.log("All current users: ", this.allUsers);
     });
@@ -31,19 +32,4 @@ export class UserComponent implements OnInit {
   openDialog() {
     this.dialog.open(DialogAddUserComponent);
   }
-
-  setUserObject(obj: any, id: string) {
-    return {
-      customIdName: id,
-      firstName: obj.firstName,
-      email: obj.email,
-      lastName: obj.lastName,
-      birthdate: obj.birthDate,
-      city: obj.city,
-      street: obj.street,
-      zipCode: obj.zipCode,
-      profile: obj.profile
-    }
-  }
-
 }

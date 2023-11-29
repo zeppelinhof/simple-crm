@@ -17,6 +17,9 @@ export class UserDetailComponent {
   userId = '';
   user: User = new User();
   deleting: boolean = false;
+  allUsers: any = [];
+  allUserIds: string[] = [];
+  countUsers: number = 0;
 
   constructor(private route: ActivatedRoute,
     private firestore: Firestore,
@@ -40,16 +43,26 @@ export class UserDetailComponent {
         if (change.doc.id === userId) {
           this.writeUserData(userId);
         }
-
       })
-    })
+    });
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      this.allUsers = [];
+      this.allUserIds = [];
+      querySnapshot.forEach((element) => {
+        this.allUsers.push(this.userFirebase.setUserObject(element.data(), element.id));
+        this.allUserIds.push(element.id);
+      });
+      this.countUsers = this.allUserIds.length;
+      // console.log("All current users: ", this.allUsers);
+    });
   }
 
   async writeUserData(userId: string) {
     const documentRef = doc(this.firestore, 'users', userId);
     const docSnapshot = await getDoc(documentRef);
     this.user = new User(docSnapshot.data());
-    console.log("Retrieved user:", this.user);
+    // console.log("Retrieved user:", this.user);
   }
 
   editMenu() {
@@ -58,7 +71,7 @@ export class UserDetailComponent {
     dialog.componentInstance.userId = this.userId;
   }
 
-  editUserDetail(){
+  editUserDetail() {
     const dialog = this.dialog.open(DialogEditUserComponent);
     dialog.componentInstance.user = new User(this.user.toJSON());
     dialog.componentInstance.userId = this.userId;
@@ -68,10 +81,32 @@ export class UserDetailComponent {
     this.deleting = true;
     await deleteDoc(this.userFirebase.getSingleDocRef(colId, docId)).catch(
       (err) => { console.log(err); }
-    ).then(()=>{
+    ).then(() => {
       this.deleting = false;
       this.router.navigate(['/user']);
     });
+  }
+
+  switchUser(forward: boolean): string {
+    if (this.countUsers > 0) {
+      for (let index: number = 0; index < this.countUsers; index++) {
+        const cId = this.allUserIds[index];
+        if (cId == this.userId) {
+          if (forward) {
+            if (index == this.countUsers - 1) {
+              return '';
+            }
+            return this.allUserIds[index + 1]
+          } else {
+            if (index == 0) {
+              return '';
+            }
+            return this.allUserIds[index - 1]
+          }
+        }
+      }
+    }
+    return '';
   }
 
 }

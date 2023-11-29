@@ -1,6 +1,13 @@
 <mat-card class="user-detail-header">
     <mat-progress-bar *ngIf="deleting" class="delete-progress" mode="query"></mat-progress-bar>
-
+    <div class="btn-switch">
+        <div class="btn-direction"><mat-icon class="width-unset" [routerLink]="['/user/' + switchUser(false)]">
+                arrow_back_ios
+            </mat-icon></div>
+            <div class="btn-direction"><mat-icon class="width-unset" [routerLink]="['/user/' + switchUser(true)]">
+                arrow_forward_ios
+            </mat-icon></div>
+    </div>
     <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="userMenu">
         <mat-icon>more_vert</mat-icon>
     </button>
